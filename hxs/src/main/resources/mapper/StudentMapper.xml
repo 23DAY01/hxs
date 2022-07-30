@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lypc.hxs.mapper.StudentMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.lypc.hxs.pojo.domain.Student">
+        <id column="student_id" property="studentId" />
+        <result column="student_name" property="studentName" />
+        <result column="student_card_id" property="studentCardId" />
+        <result column="student_age" property="studentAge" />
+        <result column="student_school" property="studentSchool" />
+        <result column="student_grade" property="studentGrade" />
+        <result column="parent_work" property="parentWork" />
+        <result column="student_record" property="studentRecord" />
+        <result column="student_phone" property="studentPhone" />
+        <result column="student_interest" property="studentInterest" />
+        <result column="student_dream" property="studentDream" />
+        <result column="family_status" property="familyStatus" />
+        <result column="guardian_name" property="guardianName" />
+        <result column="guardian_relation" property="guardianRelation" />
+        <result column="guardian_phone" property="guardianPhone" />
+        <result column="deleted" property="deleted" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="admin_id" property="adminId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        student_id, student_name, student_card_id, student_age, student_school, student_grade, parent_work, student_record, student_phone, student_interest, student_dream, family_status, guardian_name, guardian_relation, guardian_phone, deleted, create_time, update_time, admin_id
+    </sql>
+
+</mapper>
