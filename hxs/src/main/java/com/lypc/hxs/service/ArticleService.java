@@ -1,5 +1,6 @@
 package com.lypc.hxs.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.lypc.hxs.pojo.domain.Article;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -17,4 +18,9 @@ public interface ArticleService extends IService<Article> {
 
     public List<Article> getArticlesOfCurrentUser(Integer userId);
 
+    public Page<Article> getRecentArticles(Integer current, Integer size);
+
+    public Page<Article> getArticlesByHits(Integer current, Integer size);
+
+    public List<Article> getArticlesByTitle(String title);
 }

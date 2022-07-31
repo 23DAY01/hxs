@@ -29,7 +29,7 @@ public interface StatusCode {
         PARAM_NOT_VALID(4000103,"参数校验失败"),
 
         FILE_EMPTY(4000201,"文件为空"),
-        FILE_TYPE_ERROR(4000202,"4000202"),
+        FILE_TYPE_ERROR(4000202,"文件类型错误"),
 
         AUTH_NOLOGIN(4000301,"未登录"),
         AUTH_PERMISSION_DENIED(4000302,"没有权限"),

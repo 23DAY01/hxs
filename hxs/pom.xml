@@ -181,12 +181,11 @@
             <version>7.11.0</version>
         </dependency>
 
-<!--        &lt;!&ndash;导入配置文件处理器，配置文件进行绑定就会有提示，需要重启&ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-configuration-processor</artifactId>-->
-<!--            <optional>true</optional>-->
-<!--        </dependency>-->
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
 
 
     </dependencies>

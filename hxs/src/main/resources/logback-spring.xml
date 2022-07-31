@@ -64,6 +64,27 @@
         </encoder>
     </appender>
 
+    <appender name="warnFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- ThresholdFilter:临界值过滤器，过滤掉 TRACE 和 DEBUG 级别的日志 -->
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>WARN</level>
+        </filter>
+        <!-- 自定义滚动策略 防止日志文件无限变大 设置了什么时候重新创建一个新的日志文件 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/warn/logback.info.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <!--保存最近30天的日志-->
+            <maxHistory>30</maxHistory>
+            <!--单个文件的最大大小  到了这个值，就会再创建一个日志文件，日志文件的名字最后+1-->
+            <maxFileSize>10MB</maxFileSize>
+            <!--所有的日志文件最大20G，超过就会删除旧的日志-->
+            <totalSizeCap>10GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <charset>${FILE_LOG_CHARSET}</charset>
+            <pattern>${FILE_LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
 
     <appender name="errorFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
@@ -117,13 +138,15 @@
         <root level="info">
             <appender-ref ref="stdout" />
             <appender-ref ref="infoFile" />
+            <appender-ref ref="warnFile"/>
             <appender-ref ref="errorFile" />
         </root>
     </springProfile>
     <!--生产环境:输出到文件-->
     <springProfile name="prod">
         <root level="info">
-            <appender-ref ref="infoFile" />
+<!--            <appender-ref ref="infoFile" />-->
+            <appender-ref ref="warnFile"/>
             <appender-ref ref="errorFile" />
         </root>
     </springProfile>

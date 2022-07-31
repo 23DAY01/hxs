@@ -44,13 +44,23 @@ public class StudentController {
         return ResponseAPI.success(students);
     }
 
-    @ApiOperation(value = "获取学生信息")
-    @GetMapping("/getStudent")
+    @ApiOperation(value = "通过id获取学生信息")
+    @GetMapping("/getStudentById")
     public ResponseAPI<?> getStudentById(
             @ApiParam(name = "id", value = "学生id", required = true)
             @RequestParam(name = "id")
                     Integer id){
         Student student = studentService.getById(id);
+        return ResponseAPI.success(student);
+    }
+
+    @ApiOperation("通过身份卡id获取学生信息")
+    @GetMapping("/getStudentByCardId")
+    public ResponseAPI<?> getStudentByCardId(
+            @ApiParam(name = "cardId", value = "学生身份卡id", required = true)
+            @RequestParam(name = "cardId")
+                    Integer id){
+        Student student = studentService.getStudentByCardId(id);
         return ResponseAPI.success(student);
     }
 }

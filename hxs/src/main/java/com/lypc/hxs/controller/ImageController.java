@@ -4,7 +4,7 @@ import com.lypc.hxs.constant.StatusCode;
 import com.lypc.hxs.pojo.domain.Image;
 import com.lypc.hxs.service.ImageService;
 import com.lypc.hxs.utils.AuthUtil;
-import com.lypc.hxs.utils.Fileutil;
+import com.lypc.hxs.utils.FileUtil;
 import com.lypc.hxs.utils.QiniuUtil;
 import com.lypc.hxs.utils.ResponseAPI;
 import io.swagger.annotations.Api;
@@ -27,7 +27,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @Api(tags = "图片controller")
 @RestController
-@RequestMapping("/image")
+@RequestMapping("/user/image")
 public class ImageController {
 
 
@@ -39,19 +39,16 @@ public class ImageController {
 
     @ApiOperation(value = "上传图片", notes = "文件上传即可")
     @PostMapping("/uploadImg")
-    public ResponseAPI<?> uploadImage(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse,
-                                      @ApiParam(name = "img", value = "图片", required = true)
-                                      @RequestParam(name = "img")
-                                              MultipartFile img,HttpServletRequest request) {
-
-        //通过文件流头部判断文件  基本是安全的
-        //String type = FileUtil.getType((File) img);
+    public ResponseAPI<?> uploadImage(
+            @ApiParam(name = "img", value = "图片", required = true)
+            @RequestParam(name = "img")
+                    MultipartFile img, HttpServletRequest request) {
 
         //获取文件路径
         String filename = img.getOriginalFilename();
         //判断图片安全性
-        Fileutil.judgeImageValid(img, filename);
-        String filePath = Fileutil.generateFilePath(filename);
+        FileUtil.judgeImageValid(img, filename);
+        String filePath = FileUtil.generateFilePath(filename);
 
         //上传图片到七牛云
         String key = qiniuUtil.uploadImage(img, filePath);
@@ -61,7 +58,7 @@ public class ImageController {
 
         //封装image类到mysql
         Image image = new Image();
-        String url=qiniuUtil.DOMAIN_NAME + key;
+        String url = qiniuUtil.DOMAIN_NAME + key;
         image.setUserId(userId);
         image.setImageUrl(url);
 
@@ -74,7 +71,7 @@ public class ImageController {
     @ApiOperation("删除图片")
     @GetMapping("/delImg")
     public ResponseAPI<?> delImage(
-            @ApiParam(name = "id", value = "图片的key",required = true)
+            @ApiParam(name = "id", value = "图片的key", required = true)
             @RequestParam(name = "id")
                     Integer id) {
 

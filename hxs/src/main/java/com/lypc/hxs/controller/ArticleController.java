@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 @Api("文章controller")
 @RestController
-@RequestMapping("/article")
+@RequestMapping("/user/article")
 public class ArticleController {
 
     @Autowired
@@ -38,7 +38,7 @@ public class ArticleController {
      * @param request
      * @return
      */
-    @ApiOperation(value = "添加文章")
+    @ApiOperation(value = "当前用户添加文章")
     @PostMapping("/addArticle")
     public ResponseAPI<?> addArticle(
             @ApiParam(name = "article", value = "article类", required = true)
@@ -70,7 +70,12 @@ public class ArticleController {
     }
 
 
-    @ApiOperation("获取该用户全部文章")
+    /**
+     * 获取当前用户全部文章
+     * @param request
+     * @return
+     */
+    @ApiOperation("获取当前用户全部文章")
     @GetMapping("/getArticles")
     public ResponseAPI<?> getArticles(HttpServletRequest request) {
         Integer userId = AuthUtil.getCurrentUserId(request);
@@ -82,19 +87,23 @@ public class ArticleController {
      * @param article
      * @return
      */
-    @ApiOperation("编辑文章")
+    @ApiOperation("当前编辑文章")
     @PostMapping("/modifyArticle")
     public ResponseAPI<?> modifyArticle(
             @ApiParam(name = "article", value = "article类", required = true)
             @RequestBody
                     Article article) {
-
         articleService.updateById(article);
         return ResponseAPI.success();
     }
 
 
-    @ApiOperation("删除文章")
+    /**
+     * 当前用户删除文章
+     * @param id
+     * @return
+     */
+    @ApiOperation("当前用户删除文章")
     @GetMapping("/delArticle")
     public ResponseAPI<?> delArticle(
             @ApiParam(name = "id", value = "文章的id", required = true)

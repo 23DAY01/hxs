@@ -27,6 +27,7 @@ mvnw.cmd
 docker
 ../hxs.zip
 hxs.iml
+src/test/java/com/lypc/hxs/HxsApplicationTests.java
 
 ### NetBeans ###
 /nbproject/private/

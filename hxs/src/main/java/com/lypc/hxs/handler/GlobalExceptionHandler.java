@@ -28,7 +28,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(value = BusinessException.class)
     public ResponseAPI<?> BusinessExceptionHandler(BusinessException e){
-        log.warn("业务异常:{}",e.getErrorMessage());
+        log.error("业务异常:{}",e.getErrorMessage());
         return ResponseAPI.fail(e.getErrorCode(),e.getErrorMessage());
     }
 

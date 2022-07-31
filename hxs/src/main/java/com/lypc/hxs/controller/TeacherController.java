@@ -3,6 +3,7 @@ package com.lypc.hxs.controller;
 import com.lypc.hxs.constant.StatusCode;
 import com.lypc.hxs.exception.BusinessException;
 import com.lypc.hxs.pojo.domain.Teacher;
+import com.lypc.hxs.pojo.domain.Teacher;
 import com.lypc.hxs.service.TeacherService;
 import com.lypc.hxs.utils.ResponseAPI;
 import io.swagger.annotations.*;
@@ -51,6 +52,16 @@ public class TeacherController {
             @RequestParam(name = "id")
                     Integer id){
         Teacher teacher = teacherService.getById(id);
+        return ResponseAPI.success(teacher);
+    }
+
+    @ApiOperation("通过身份卡id获取学生信息")
+    @GetMapping("/getTeacherByCardId")
+    public ResponseAPI<?> getTeacherByCardId(
+            @ApiParam(name = "cardId", value = "学生身份卡id", required = true)
+            @RequestParam(name = "cardId")
+                    Integer id){
+        Teacher teacher = teacherService.getTeacherByCardId(id);
         return ResponseAPI.success(teacher);
     }
 }

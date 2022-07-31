@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2022-07-30
  */
 @RestController
-@RequestMapping("/tag")
+@RequestMapping("/user/tag")
 public class TagController {
 
 }
