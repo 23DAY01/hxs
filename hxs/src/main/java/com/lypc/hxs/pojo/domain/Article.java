@@ -76,5 +76,9 @@ public class Article {
     @TableField("user_id")
     private Integer userId;
 
+    @ApiModelProperty("文章图片")
+    @TableField("article_image")
+    private String articleImage;
+
 
 }

@@ -14,41 +14,29 @@ import lombok.Setter;
 
 /**
  * <p>
- * 用户表
+ * 
  * </p>
  *
  * @author 23DAY
- * @since 2022-07-30
+ * @since 2022-08-05
  */
 @Getter
 @Setter
-@TableName("user")
-@ApiModel(value = "User对象", description = "用户表")
-public class User {
+@TableName("teacher_curriculum_relation")
+@ApiModel(value = "TeacherCurriculumRelation对象", description = "")
+public class TeacherCurriculumRelation {
 
     @ApiModelProperty("主键id")
-    @TableId(value = "user_id", type = IdType.AUTO)
-    private Integer userId;
+    @TableId(value = "relation_id", type = IdType.AUTO)
+    private Integer relationId;
 
-    @ApiModelProperty("登录账号")
-    @TableField("username")
-    private String username;
+    @ApiModelProperty("教师id")
+    @TableField("teacher_id")
+    private Integer teacherId;
 
-    @ApiModelProperty("登录密码")
-    @TableField("password")
-    private String password;
-
-    @ApiModelProperty("用户名")
-    @TableField("phone")
-    private String phone;
-
-    @ApiModelProperty("是否锁定 0未锁定 1已锁定无法登陆")
-    @TableField("locked")
-    private Integer locked;
-
-    @ApiModelProperty("邮箱")
-    @TableField("email")
-    private String email;
+    @ApiModelProperty("课程id")
+    @TableField("curriculum_id")
+    private Integer curriculumId;
 
     @TableField(value = "create_time", fill = FieldFill.INSERT)
     private LocalDateTime createTime;
@@ -59,17 +47,6 @@ public class User {
     @TableField("deleted")
     @TableLogic
     private Integer deleted;
-
-    @ApiModelProperty("微信")
-    @TableField("wechat")
-    private String wechat;
-
-    @ApiModelProperty("用户头像")
-    @TableField("user_avatar")
-    private String userAvatar;
-
-
-
 
 
 }

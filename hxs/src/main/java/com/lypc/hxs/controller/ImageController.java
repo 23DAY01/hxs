@@ -34,8 +34,6 @@ public class ImageController {
     @Autowired
     private ImageService imageService;
 
-    @Autowired
-    private QiniuUtil qiniuUtil;
 
     @ApiOperation(value = "上传图片", notes = "文件上传即可")
     @PostMapping("/uploadImg")
@@ -44,25 +42,11 @@ public class ImageController {
             @RequestParam(name = "img")
                     MultipartFile img, HttpServletRequest request) {
 
-        //获取文件路径
-        String filename = img.getOriginalFilename();
-        //判断图片安全性
-        FileUtil.judgeImageValid(img, filename);
-        String filePath = FileUtil.generateFilePath(filename);
-
-        //上传图片到七牛云
-        String key = qiniuUtil.uploadImage(img, filePath);
-
         //获取当前用户id
         Integer userId = AuthUtil.getCurrentUserId(request);
 
-        //封装image类到mysql
-        Image image = new Image();
-        String url = qiniuUtil.DOMAIN_NAME + key;
-        image.setUserId(userId);
-        image.setImageUrl(url);
-
-        imageService.save(image);
+        //上传图片
+        String url = imageService.uploadImage(img, userId);
 
         return ResponseAPI.success(url, StatusCode.SUCCESS.OK.getCode());
     }
@@ -74,17 +58,8 @@ public class ImageController {
             @ApiParam(name = "id", value = "图片的key", required = true)
             @RequestParam(name = "id")
                     Integer id) {
-
-        Image image = imageService.getById(id);
-
-        //七牛云del
-        qiniuUtil.delImage(qiniuUtil.Url2Key(image.getImageUrl()));
-
-        //数据库del
-        imageService.removeById(id);
-
+        imageService.delImage(id);
         return ResponseAPI.success(StatusCode.SUCCESS.OK.getCode());
-
     }
 
 }

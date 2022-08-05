@@ -7,6 +7,8 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.time.LocalDateTime;
+import java.util.List;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
@@ -63,4 +65,15 @@ public class Teacher {
     @TableField("admin_id")
     private Integer adminId;
 
+
+    @ApiModelProperty("教师图片")
+    @TableField("teacher_image")
+    private String teacherImage;
+
+    @ApiModelProperty("年级")
+    @TableField("teacher_grade")
+    private String teacherGrade;
+
+    @ApiModelProperty("教授课程名称")
+    private List<String> curriculumNames;
 }

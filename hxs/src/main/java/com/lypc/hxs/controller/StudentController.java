@@ -28,6 +28,11 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
+    /**
+     * 添加学生信息
+     * @param student
+     * @return
+     */
     @ApiOperation(value = "添加学生信息")
     @PostMapping("/addStudent")
     public ResponseAPI<?> addStudent(
@@ -37,6 +42,11 @@ public class StudentController {
         return ResponseAPI.success(StatusCode.SUCCESS.OK.getCode());
     }
 
+
+    /**
+     * 获取学生信息
+     * @return
+     */
     @ApiOperation(value = "获取学生信息")
     @GetMapping("/getStudents")
     public ResponseAPI<?> getStudents(){
@@ -44,6 +54,11 @@ public class StudentController {
         return ResponseAPI.success(students);
     }
 
+    /**
+     * 通过id获取信息
+     * @param id
+     * @return
+     */
     @ApiOperation(value = "通过id获取学生信息")
     @GetMapping("/getStudentById")
     public ResponseAPI<?> getStudentById(
@@ -54,6 +69,11 @@ public class StudentController {
         return ResponseAPI.success(student);
     }
 
+    /**
+     * 通过身份卡获取信息
+     * @param id 身份卡
+     * @return
+     */
     @ApiOperation("通过身份卡id获取学生信息")
     @GetMapping("/getStudentByCardId")
     public ResponseAPI<?> getStudentByCardId(

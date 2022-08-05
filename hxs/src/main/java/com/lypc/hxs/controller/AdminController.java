@@ -63,13 +63,14 @@ public class AdminController {
 
 
     @GetMapping("/logout")
-    public void logout(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+    public ResponseAPI<?> logout(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
         session.removeAttribute(WebConst.AUTHENTICATION.ADMIN_SESSION);
         Cookie cookie = new Cookie(WebConst.AUTHENTICATION.ADMIN_COOKIE, "");
         cookie.setValue(null);
         cookie.setMaxAge(0);
         cookie.setPath("/");
         response.addCookie(cookie);
+        return ResponseAPI.success();
     }
 
 }
