@@ -1,5 +1,6 @@
 package com.lypc.hxs.controller;
 
+import com.alibaba.druid.sql.ast.statement.SQLAlterTablePartitionLifecycle;
 import com.lypc.hxs.constant.StatusCode;
 import com.lypc.hxs.pojo.domain.Article;
 import com.lypc.hxs.pojo.domain.Teacher;
@@ -65,6 +66,9 @@ public class ArticleController {
             String url = imageService.uploadImage(img, user.getUserId());
             user.setUserAvatar(url);
         }
+
+        //提交审核
+        article.setExamined(0);
 
         articleService.save(article);
         return ResponseAPI.success();

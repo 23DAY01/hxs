@@ -41,8 +41,8 @@ public class Teacher {
     private Integer teacherCardId;
 
     @ApiModelProperty("所属单位")
-    @TableField("teacher_souce")
-    private String teacherSouce;
+    @TableField("teacher_source")
+    private String teacherSource;
 
     @ApiModelProperty("所属团队")
     @TableField("teacher_team")

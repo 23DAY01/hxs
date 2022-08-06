@@ -83,5 +83,19 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
         return articleMapper.selectList(wrapper);
     }
 
+    @Override
+    public List<Article> getNoExamineArticles() {
+        LambdaQueryWrapper<Article> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(Article::getExamined,0);
+        List<Article> articles = articleMapper.selectList(wrapper);
+        return articles;
+    }
+
+    @Override
+    public void examineArticle(Integer articleId) {
+        Article article = this.getById(articleId);
+        article.setExamined(1);
+    }
+
 
 }

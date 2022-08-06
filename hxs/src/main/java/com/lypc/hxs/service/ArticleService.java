@@ -23,4 +23,8 @@ public interface ArticleService extends IService<Article> {
     public Page<Article> getArticlesByHits(Integer current, Integer size);
 
     public List<Article> getArticlesByTitle(String title);
+
+    public List<Article> getNoExamineArticles();
+
+    public void examineArticle(Integer articleId);
 }

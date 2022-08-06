@@ -80,5 +80,9 @@ public class Article {
     @TableField("article_image")
     private String articleImage;
 
+    @ApiModelProperty("是否通过审核 0-未审核")
+    @TableField("Examined")
+    private Integer Examined;
+
 
 }
